@@ -21,11 +21,7 @@
       </p>
       <input type="submit" />
     </form>
-    <div>
-      <div id="title-history"></div>
-      <div id="text-history"></div>
-      <div id="datetime-history"></div>
-    </div>
+    <div id="history-list"></div>
   </body>
   <script>
     function add() {
@@ -33,9 +29,33 @@
       var text = document.getElementById("text").value;
       var datetime = document.getElementById("datetime").value;
 
-      document.getElementById("title-history").innerHTML = title;
-      document.getElementById("text-history").innerHTML = text;
-      document.getElementById("datetime-history").innerHTML = datetime;
+      var titleHistoryElement = document.createElement("p");
+      var titleHistoryContent = document.createTextNode(title);
+      titleHistoryElement.appendChild(titleHistoryContent);
+
+      var textHistoryElement = document.createElement("p");
+      var textHistoryContent = document.createTextNode(text);
+      textHistoryElement.appendChild(textHistoryContent);
+
+      var datetimeHistoryElement = document.createElement("p");
+      var datetimeHistoryContent = document.createTextNode(datetime);
+      datetimeHistoryElement.appendChild(datetimeHistoryContent);
+
+      var doneElement = document.createElement("p");
+      var doneContent = document.createTextNode("done? ");
+      var checkBoxElement = document.createElement("input");
+      checkBoxElement.setAttribute("type", "checkbox");
+      doneElement.appendChild(doneContent);
+      doneElement.appendChild(checkBoxElement);
+
+      var parentHistory = document.createElement("div");
+      parentHistory.appendChild(doneElement);
+      parentHistory.appendChild(titleHistoryElement);
+      parentHistory.appendChild(textHistoryElement);
+      parentHistory.appendChild(datetimeHistoryElement);
+
+      var parentDiv = document.getElementById("history-list");
+      parentDiv.appendChild(parentHistory);
     }
   </script>
 </html>
