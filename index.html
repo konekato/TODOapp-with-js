@@ -6,20 +6,36 @@
   </head>
   <body>
     <h1>TO DO LIST !!!</h1>
-    <form>
+    <form onsubmit="add()" action="#">
       <p>
         Title:
-        <input type="text" name="title" />
+        <input type="text" id="title" />
       </p>
       <p>
         TODO:
-        <textarea name="todo" rows="4" cols="40"></textarea>
+        <textarea id="text" rows="4" cols="40"></textarea>
       </p>
       <p>
         When:
-        <input type="datetime-local" name="datetime" />
+        <input type="datetime-local" id="datetime" />
       </p>
       <input type="submit" />
     </form>
+    <div>
+      <div id="title-history"></div>
+      <div id="text-history"></div>
+      <div id="datetime-history"></div>
+    </div>
   </body>
+  <script>
+    function add() {
+      var title = document.getElementById("title").value;
+      var text = document.getElementById("text").value;
+      var datetime = document.getElementById("datetime").value;
+
+      document.getElementById("title-history").innerHTML = title;
+      document.getElementById("text-history").innerHTML = text;
+      document.getElementById("datetime-history").innerHTML = datetime;
+    }
+  </script>
 </html>
