@@ -61,9 +61,6 @@
       var title = document.getElementById("title").value;
       var text = document.getElementById("text").value;
       var datetime = document.getElementById("datetime").value;
-      document.getElementById("title").value = "";
-      document.getElementById("text").value = "";
-      document.getElementById("datetime").value = "";
 
       if (text == "") {
         window.alert("内容 項目は必須です。");
@@ -104,6 +101,10 @@
 
       var parentDiv = document.getElementById("history-list");
       parentDiv.appendChild(parentHistory);
+
+      document.getElementById("title").value = "";
+      document.getElementById("text").value = "";
+      document.getElementById("datetime").value = "";
     }
 
     document.getElementById("clear").onclick = function () {
