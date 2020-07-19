@@ -24,10 +24,9 @@
       .text-history {
         word-wrap: break-word;
       }
-      textarea {
-        box-sizing: border-box;
-        -moz-box-sizing: border-box; /* Firefox */
-        -webkit-box-sizing: border-box; /* Chrome, Safari */
+      .datetime-history {
+        font-size: small;
+        color: hsl(0, 0%, 50%);
       }
     </style>
   </head>
@@ -45,6 +44,7 @@
         <div class="input-content">
           <div>期限</div>
           <input type="datetime-local" id="datetime" />
+          <input type="button" value="クリア" id="clear" />
         </div>
         <input type="submit" value="追加" />
         <!-- <input type="button" value="csv で保存" /> -->
@@ -61,9 +61,12 @@
       var title = document.getElementById("title").value;
       var text = document.getElementById("text").value;
       var datetime = document.getElementById("datetime").value;
+      document.getElementById("title").value = "";
+      document.getElementById("text").value = "";
+      document.getElementById("datetime").value = "";
 
-      if (title == "" && text == "" && datetime == "") {
-        window.alert("項目に入力してください。");
+      if (text == "") {
+        window.alert("内容 項目は必須です。");
         return false;
       }
 
@@ -77,13 +80,13 @@
       textHistoryElement.setAttribute("class", "text-history");
 
       var datetimeHistoryElement = document.createElement("p");
-      var datetimeHistoryContent = document.createTextNode(datetime + " まで");
       if (datetime == "") {
         datetimeHistoryContent = document.createTextNode("期限無し");
       } else {
-        datetimeHistoryContent = document.createTextNode(datetime + " まで");
+        datetimeHistoryContent = document.createTextNode(datetime + "まで");
       }
       datetimeHistoryElement.appendChild(datetimeHistoryContent);
+      datetimeHistoryElement.setAttribute("class", "datetime-history");
 
       var doneElement = document.createElement("p");
       var doneContent = document.createTextNode(" 👈 done");
@@ -102,5 +105,9 @@
       var parentDiv = document.getElementById("history-list");
       parentDiv.appendChild(parentHistory);
     }
+
+    document.getElementById("clear").onclick = function () {
+      document.getElementById("datetime").value = "";
+    };
   </script>
 </html>
