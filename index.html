@@ -54,61 +54,61 @@
       <h2>To Do List</h2>
       <div id="history-list"></div>
     </div>
+
+    <script>
+      function add() {
+        var title = document.getElementById("title").value;
+        var text = document.getElementById("text").value;
+        var datetime = document.getElementById("datetime").value;
+
+        if (text == "") {
+          window.alert("内容 項目は必須です。");
+          return false;
+        }
+
+        var titleHistoryElement = document.createElement("h2");
+        var titleHistoryContent = document.createTextNode(title);
+        titleHistoryElement.appendChild(titleHistoryContent);
+
+        var textHistoryElement = document.createElement("p");
+        var textHistoryContent = document.createTextNode(text);
+        textHistoryElement.appendChild(textHistoryContent);
+        textHistoryElement.setAttribute("class", "text-history");
+
+        var datetimeHistoryElement = document.createElement("p");
+        if (datetime == "") {
+          datetimeHistoryContent = document.createTextNode("期限無し");
+        } else {
+          datetimeHistoryContent = document.createTextNode(datetime + "まで");
+        }
+        datetimeHistoryElement.appendChild(datetimeHistoryContent);
+        datetimeHistoryElement.setAttribute("class", "datetime-history");
+
+        var doneElement = document.createElement("p");
+        var doneContent = document.createTextNode(" 👈 done");
+        var checkBoxElement = document.createElement("input");
+        checkBoxElement.setAttribute("type", "checkbox");
+        doneElement.appendChild(checkBoxElement);
+        doneElement.appendChild(doneContent);
+
+        var parentHistory = document.createElement("div");
+        parentHistory.setAttribute("class", "history");
+        parentHistory.appendChild(titleHistoryElement);
+        parentHistory.appendChild(textHistoryElement);
+        parentHistory.appendChild(datetimeHistoryElement);
+        parentHistory.appendChild(doneElement);
+
+        var parentDiv = document.getElementById("history-list");
+        parentDiv.appendChild(parentHistory);
+
+        document.getElementById("title").value = "";
+        document.getElementById("text").value = "";
+        document.getElementById("datetime").value = "";
+      }
+
+      document.getElementById("clear").onclick = function () {
+        document.getElementById("datetime").value = "";
+      };
+    </script>
   </body>
-
-  <script>
-    function add() {
-      var title = document.getElementById("title").value;
-      var text = document.getElementById("text").value;
-      var datetime = document.getElementById("datetime").value;
-
-      if (text == "") {
-        window.alert("内容 項目は必須です。");
-        return false;
-      }
-
-      var titleHistoryElement = document.createElement("h2");
-      var titleHistoryContent = document.createTextNode(title);
-      titleHistoryElement.appendChild(titleHistoryContent);
-
-      var textHistoryElement = document.createElement("p");
-      var textHistoryContent = document.createTextNode(text);
-      textHistoryElement.appendChild(textHistoryContent);
-      textHistoryElement.setAttribute("class", "text-history");
-
-      var datetimeHistoryElement = document.createElement("p");
-      if (datetime == "") {
-        datetimeHistoryContent = document.createTextNode("期限無し");
-      } else {
-        datetimeHistoryContent = document.createTextNode(datetime + "まで");
-      }
-      datetimeHistoryElement.appendChild(datetimeHistoryContent);
-      datetimeHistoryElement.setAttribute("class", "datetime-history");
-
-      var doneElement = document.createElement("p");
-      var doneContent = document.createTextNode(" 👈 done");
-      var checkBoxElement = document.createElement("input");
-      checkBoxElement.setAttribute("type", "checkbox");
-      doneElement.appendChild(checkBoxElement);
-      doneElement.appendChild(doneContent);
-
-      var parentHistory = document.createElement("div");
-      parentHistory.setAttribute("class", "history");
-      parentHistory.appendChild(titleHistoryElement);
-      parentHistory.appendChild(textHistoryElement);
-      parentHistory.appendChild(datetimeHistoryElement);
-      parentHistory.appendChild(doneElement);
-
-      var parentDiv = document.getElementById("history-list");
-      parentDiv.appendChild(parentHistory);
-
-      document.getElementById("title").value = "";
-      document.getElementById("text").value = "";
-      document.getElementById("datetime").value = "";
-    }
-
-    document.getElementById("clear").onclick = function () {
-      document.getElementById("datetime").value = "";
-    };
-  </script>
 </html>
